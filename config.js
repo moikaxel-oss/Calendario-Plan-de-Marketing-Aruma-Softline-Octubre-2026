@@ -2,6 +2,6 @@
 // los datos los protege el login y las reglas de la base (RLS).
 // Vacías = modo local: el calendario funciona pero solo guarda en este navegador.
 window.CALENDAR_CONFIG = {
-  supabaseUrl: "",
+  supabaseUrl: "https://aqkrwqwifwtosywthmkb.supabase.co",
   supabaseKey: "", // "anon" o "publishable"
 };
