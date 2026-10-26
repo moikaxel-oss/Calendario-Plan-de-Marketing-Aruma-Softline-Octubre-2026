@@ -10,7 +10,8 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
 - El HTML del Artifact es un fragmento: sin `<html>/<head>/<body>`, empieza con `<title>`, fuentes y `<style>`, y termina con un solo `<script>`.
 
 ## Datos (capability `db`)
-- Colección `posts/{id}`: `brand` (aruma|softline), `channel` (org|ads), `year` 2026, `month` 6–12, `day`, `format` (R|C|H|''), `status` (0 por hacer, 1 diseñado, 2 programado), `text`.
+- Colección `posts/{id}`: `brand` (aruma|softline), `channel` (org|ads), `year` 2026, `month` 6–12, `day`, `format` (R|C|H|''), `status` (0 por hacer, 1 diseñado, 2 programado), `text`, `link` (URL del creativo en Canva; opcional, los documentos viejos no lo tienen).
+  - El link se pega con el botón "+ Link de Canva" de cada tarjeta (Enter o salir del campo guarda, Esc cancela, vacío lo quita) y se abre con el botón "Canva ↗" en otra pestaña. Las repeticiones de "3 cuotas" muestran el link de la primera si no tienen uno propio. Los cambios quedan en el historial.
   - Carga inicial: ids `s0`…`s271` (272 contenidos). Los nuevos creados desde la página llevan ids `n…`.
 - Colección `log/{auto}`: `at` (ms), `who`, `action` (insert|update|delete), `brand`, `channel`, `month`, `day`, `text`, `changes` (`{campo: [antes, después]}`). Lo escribe la página en cada cambio; es lo que muestra el botón discreto "historial" (abajo a la izquierda).
 - El texto se guarda ~0,9 s después de dejar de tipear (para no llenar el historial de letras sueltas) y al cerrar o ocultar la pestaña.
