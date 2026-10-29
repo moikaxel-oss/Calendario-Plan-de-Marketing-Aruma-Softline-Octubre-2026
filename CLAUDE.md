@@ -10,7 +10,7 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
 - El HTML del Artifact es un fragmento: sin `<html>/<head>/<body>`, empieza con `<title>`, fuentes y `<style>`, y termina con un solo `<script>`.
 
 ## Datos (capability `db`)
-- Colección `posts/{id}`: `brand` (aruma|softline), `channel` (org|ads), `year` 2026, `month` 6–12, `day`, `format` (R|C|H|''), `status` (0 por hacer, 1 diseñado, 2 programado), `text`, `guion` (link al guión) y `link` (link al diseño en Canva); ambos opcionales, los documentos viejos no los tienen.
+- Colección `posts/{id}`: `brand` (aruma|softline), `channel` (org|ads), `year` 2026, `month` 6–12, `day`, `format` (R|C|H|''), `status` (0 por hacer, 1 diseñado, 2 programado, 3 editado — el 3 solo lo usan los reels), `text`, `guion` (link al guión) y `link` (link al diseño en Canva); ambos opcionales, los documentos viejos no los tienen.
   - Qué se muestra según el formato y el estado: **Reel** (cualquier estado): solo "+ Link al guión". **Carrusel/Historia en "Por hacer"**: solo "+ Link al guión" (la opción de Canva desaparece). **Carrusel/Historia diseñado o programado**: aparece "+ Link de Canva" y el guión se sigue mostrando si ya estaba cargado, así una tarjeta puede tener los 2 links. Los links no se borran al cambiar el estado, solo se ocultan.
   - Cada link se pega con su botón (Enter o salir del campo guarda, Esc cancela, vacío lo quita) y se abre con "Guión ↗" / "Canva ↗" en otra pestaña. Las repeticiones de "3 cuotas" muestran los links de la primera si no tienen propios. Los cambios quedan en el historial ("agregó el link al guión", "cambió el link de Canva"…).
 - Colección `log/{auto}`: `at` (ms), `who`, `action` (insert|update|delete), `brand`, `channel`, `month`, `day`, `text`, `changes` (`{campo: [antes, después]}`). Lo escribe la página en cada cambio; es lo que muestra el botón discreto "historial" (abajo a la izquierda).
@@ -20,8 +20,9 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
 
 ## Reglas de negocio (no romper)
 - Solo existen 3 formatos: **Reel** (rosa), **Carrusel** (violeta), **Historia** (verde azulado).
-- Estados: Por hacer (tarjeta blanca), Diseñado (amarilla), Programado (verde).
-- **"Diseñados" incluye a los programados** (programado implica que ya estuvo diseñado).
+- Estados de **Carrusel e Historia**: Por hacer (tarjeta blanca), Diseñado (amarilla), Programado (verde).
+- Estados de **Reel** (4): **Por grabar** (blanca), **Grabado** (amarilla), **Editado** (azul), **Programado** (verde), en ese orden. Se guardan con los códigos 0, 1, 3 y 2 (el 2 sigue siendo Programado para que los reels ya cargados no cambien). Si un reel pasa a otro formato, "Editado" cuenta como Diseñado. El historial usa los nombres según el formato de la tarjeta.
+- **"Diseñados" incluye a los programados** (programado implica que ya estuvo diseñado). En **Reel** pasa lo mismo en cadena: los contadores son por grabar / grabados / editados / programados y cada paso incluye a los que ya avanzaron más (programados ⊂ editados ⊂ grabados).
 - Hay **3 contadores, uno por formato** (Reel, Historia, Carrusel; un cuarto "Sin formato" solo si hay alguno).
 - **Historias "3 cuotas sin interés"** (formato Historia, texto exacto): se diseñan **una sola vez** pero se programan **cada aparición**.
   - La primera del mes (por día) es la que se diseña. Al pasarla a Por hacer o Diseñado, todas las demás copian ese estado. Si pasa a Programado, solo se programa esa (las otras quedan al menos en Diseñado).
