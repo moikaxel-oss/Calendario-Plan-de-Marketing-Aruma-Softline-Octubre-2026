@@ -29,6 +29,7 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
 - Se puede arrastrar una tarjeta a otro día del **mismo mes** manteniendo el click (solo mouse/trackpad, no táctil). Queda en el historial.
 - Los días de la semana quedan fijos arriba (`position: sticky`) al bajar por el mes. El zoom (pellizco del trackpad y botones) usa CSS `zoom`: no pixelar.
 - Cada casilla de día crece según sus tarjetas; nada queda oculto.
+- **Celular en vertical** (pantalla de hasta 640 px de ancho): el mes se muestra como una lista de días, uno debajo del otro (con el nombre del día), sin la barra LUNES–DOMINGO ni los botones de zoom. Todo está en un único bloque `@media (max-width:640px)` al final del `<style>`. **PC, tablet y celular horizontal no deben cambiar nunca por esto**: al tocar ese bloque, comparar capturas de PC antes y después. Los campos de texto usan 16 px en celular para que iPhone no haga zoom solo al escribir.
 - Al abrir, siempre se pide **usuario (desplegable) y contraseña**. El usuario no se recuerda ni se puede cambiar sin recargar. La contraseña se compara contra un hash SHA-256 (`PASS_HASH` en el script); la sabe José Carlos. Es un control blando, no seguridad real: el acceso real lo define el menú Share del Artifact.
 
 ## Identidad visual
@@ -42,7 +43,7 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
 - Debe funcionar en pantallas grandes (uso principal) y no romperse a ancho de celular.
 
 ## Cómo probar sin tocar los datos reales
-Simular `window.claude.use('db')` con una base en memoria cargada con el contenido inicial y abrir una copia de la página (envuelta en `<html><body>`) con Playwright + Chromium (`/opt/pw-browsers/chromium`). Verificar contadores, la regla de "3 cuotas", arrastre y login. Sacar una captura antes de publicar cualquier cambio visual.
+Simular `window.claude.use('db')` con una base en memoria cargada con el contenido inicial y abrir una copia de la página (envuelta en `<html><body>`) con Playwright + Chromium (`/opt/pw-browsers/chromium`). Verificar contadores, la regla de "3 cuotas", arrastre y login, y la vista de celular (viewport 390×844 con `isMobile`, sin desborde horizontal). Sacar una captura antes de publicar cualquier cambio visual.
 
 ## Hábitos de trabajo con el usuario
 - **Preguntar antes de mezclar proyectos o repositorios**: Aruma/Soft Line calendario y el CRM son proyectos separados (cada chat, un repositorio).
