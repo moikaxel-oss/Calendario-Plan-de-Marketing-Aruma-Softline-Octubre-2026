@@ -15,6 +15,7 @@ Calendario de contenido de Instagram (orgánico) y Meta Ads para dos marcas, **A
   - Cada link se pega con su botón (Enter o salir del campo guarda, Esc cancela, vacío lo quita) y se abre con "Guión ↗" / "Canva ↗" en otra pestaña. Las repeticiones de "3 cuotas" muestran los links de la primera si no tienen propios. Los cambios quedan en el historial ("agregó el link al guión", "cambió el link de Canva"…).
 - Colección `log/{auto}`: `at` (ms), `who`, `action` (insert|update|delete), `brand`, `channel`, `month`, `day`, `text`, `changes` (`{campo: [antes, después]}`). Lo escribe la página en cada cambio; es lo que muestra el botón discreto "historial" (abajo a la izquierda).
 - El texto se guarda ~0,9 s después de dejar de tipear (para no llenar el historial de letras sueltas) y al cerrar o ocultar la pestaña.
+  - **Enter** en el campo "¿De qué trata?" guarda ya y sale del campo (no hace un renglón nuevo); **Shift+Enter** sí hace un renglón nuevo.
 - Los datos viven en la base, no en el HTML: no volver a escribir contenido en el código ni reseedear sin que lo pida el usuario.
 
 ## Reglas de negocio (no romper)
